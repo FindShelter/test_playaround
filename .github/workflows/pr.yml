@@ -21,7 +21,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - name: Add Reviewers
-        uses: madrapps/add-reviewers@v1
+        uses: shreystechtips/add-reviewers@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           reviewers: shreystechtips
