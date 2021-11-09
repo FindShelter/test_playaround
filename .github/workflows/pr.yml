@@ -12,7 +12,7 @@ jobs:
   request:
     name: Request reviews on PRs
     runs-on: ubuntu-20.04
-    # if: github.head.repo.full_name == 'FindShelter/test_playaround'
+    # if: github.event.pull_request.head.repo.full_name == 'FindShelter/test_playaround'
 
     steps:
       - name: Dump GitHub context
@@ -20,12 +20,18 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      - name: Add reviewers
-        uses: shreystechtips/actions-assigner@v1.0.3
+      # - name: Add reviewers
+      #   uses: shreystechtips/actions-assigner@v1.0.3
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     reviewers: shreystechtips
+      #     assignees: shreystechtips
+
+      - uses: hkusu/review-assign-action@v1
+        id: assign # specify id
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: shreystechtips
           assignees: shreystechtips
+          reviewers: shreystechtips
 
       - name: Label the PR
         uses: andymckay/labeler@1.0.4
