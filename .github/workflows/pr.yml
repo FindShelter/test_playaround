@@ -12,7 +12,7 @@ jobs:
   request:
     name: Request reviews on PRs
     runs-on: ubuntu-20.04
-    if: github.head.repo.full_name == 'FindShelter/test_playaround'
+    # if: github.head.repo.full_name == 'FindShelter/test_playaround'
 
     steps:
       - name: Dump GitHub context
