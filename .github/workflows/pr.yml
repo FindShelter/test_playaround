@@ -20,17 +20,10 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
-      # - name: Add reviewers
-      #   uses: shreystechtips/actions-assigner@v1.0.3
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     reviewers: shreystechtips
-      #     assignees: shreystechtips
-
-      - uses: hkusu/review-assign-action@v1
-        id: assign # specify id
+      - name: Add Reviewers
+        uses: madrapps/add-reviewers@v1
         with:
-          assignees: shreystechtips
+          token: ${{ secrets.GITHUB_TOKEN }}
           reviewers: shreystechtips
 
       - name: Label the PR
