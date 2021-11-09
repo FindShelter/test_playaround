@@ -26,6 +26,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           reviewers: shreystechtips
 
+      - name: Use GH CLI
+        run: gh pr edit ${{ github.event.pull_request._links.html.href }}--add-reviewer shreystechtips  --add-assignee "shreystechtips"
+
       - name: Label the PR
         uses: andymckay/labeler@1.0.4
         with:
