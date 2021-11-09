@@ -28,8 +28,9 @@ jobs:
 
       - name: Use GH CLI
         run: |
-          gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
-          gh pr edit 1 --add-reviewer shreystechtips  --add-assignee shreystechtips
+          echo ${{ secrets.GITHUB_TOKEN }} > token.txt
+          gh auth login --with-token < token.txt
+          gh pr edit "${{ github.event.pull_request._links.html.href }}" --add-reviewer shreystechtips  --add-assignee shreystechtips
 
       - name: Label the PR
         uses: andymckay/labeler@1.0.4
